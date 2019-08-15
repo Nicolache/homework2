@@ -42,33 +42,54 @@ def select_verbs_from_name(name):
         if is_verb(word):
             yield word
 
+def select_nouns_from_name(name):
+    """Forms a generator of nouns that are selected from a name.
+    """
+    words_of_name = name.lower().split('_')
+    for word in words_of_name:
+        if is_noun(word):
+            yield word
+
+
 
 def verbs_in_functions(applied_language_parser):
     """Uses selected language class to return verbs out of functions names of code.
     """
-	verbs = []
-	for name in applied_language_parser.select_function_names_from_nodes():
-		for verb in select_verbs_from_name(name):
-			verbs.append(verb)
-	return get_top(verbs)
-
+    verbs = []
+    for name in applied_language_parser.select_function_names_from_nodes():
+    	for verb in select_verbs_from_name(name):
+    		verbs.append(verb)
+    return get_top(verbs)
+    
 
 def verbs_in_variables(applied_language_parser):
     """Uses selected language class to return verbs out of variables names of code.
     """
+    verbs = []
     for name in applied_language_parser.select_variable_names_from_nodes():
         for verb in select_verbs_from_name(name):
             verbs.append(verb)
     return get_top(verbs)
-    pass
 
 
 def nouns_in_functions(applied_language_parser):
-    pass
+    """Uses selected language class to return nouns out of functions names of code.
+    """
+    nouns = []
+    for name in applied_language_parser.select_function_names_from_nodes():
+    	for noun in select_nouns_from_name(name):
+    		nouns.append(noun)
+    return get_top(nouns)
 
 
 def nouns_in_variables(applied_language_parser):
-    pass
+    """Uses selected language class to return nouns out of variables names of code.
+    """
+    nouns = []
+    for name in applied_language_parser.select_variable_names_from_nodes():
+        for noun in select_nouns_from_name(name):
+            nouns.append(noun)
+    return get_top(nouns)
 
 
 reports_dictionary = {

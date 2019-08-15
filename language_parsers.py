@@ -96,7 +96,7 @@ class PythonParser(AllLanguagesParser):
 
         Returns a generator.
         """
-        for node in generate_nodes_out_of_trees(self):
+        for node in self.generate_nodes_out_of_trees():
             if isinstance(node, ast.Name):
                 yield node.id.lower()
 
