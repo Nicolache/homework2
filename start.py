@@ -1,7 +1,7 @@
 from arguments import args
 from language_parsers import choose_language
 from report_kinds import choose_report_kind
-from save import output_formats
+from save import get_output_format
 from variables import repos_local_path
 
 
@@ -12,9 +12,8 @@ def main():
     language_parsing = LanguageParser(repos_local_path)
 
     out_data = Report(language_parsing)
-    print('out data ' + str(out_data))
-    # OutputFormat = output_formats(args.format)
-    # OutputFormat(out_data, args.output_file)
+    OutputFormat = get_output_format(args.format)
+    OutputFormat(out_data, args.output_file)
 
 
 if __name__ == "__main__":
