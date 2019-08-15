@@ -32,12 +32,16 @@ def repo_clone(https_url, vcs_type):
 def clone_all():
     """Executes cloning of each repository by `repos_to_clone_urls` plenty.
     """
-    print('working')
     for url_and_vcstype in repos_to_clone_urls:
         repo_clone(url_and_vcstype[0], url_and_vcstype[1])
 
 
 def main():
+    """This function contains cloning from repositories,
+    deleting cloned repositories, choosing a language parser,
+    choosing a report kind, choosing an output format to save,
+    and applying all this methods.
+    """
     if args.clear:
         delete_repos_directories()
 
@@ -46,9 +50,7 @@ def main():
 
     LanguageParser = choose_language(args.language)
     Report = choose_report_kind(args.report)
-
     language_parsing = LanguageParser(repos_local_path)
-
     out_data = Report(language_parsing)
     OutputFormat = get_output_format(args.format)
     OutputFormat(out_data, args.output_file)

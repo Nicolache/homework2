@@ -10,7 +10,8 @@ class AllLanguagesParser(object):
         self.path = path
 
     def get_filenames(self):
-        """Get all *.py files locations inside `path` location.
+        """Get all *.py files locations inside `self.path` location.
+        This is a common method for all the programming language parsers.
 
         Returns a generator.
         """
@@ -32,7 +33,7 @@ class PythonParser(AllLanguagesParser):
         with filenames, and file contents.
 
         Keyword arguments:
-        path -- A path string.
+        self.path -- A path string.
         with_filenames -- `bool`:
             A flag that switches "with filenames" return mode on:
             ((filename, tree), ...)
@@ -42,7 +43,6 @@ class PythonParser(AllLanguagesParser):
 
         Returns a generator.
         """
-        # filenames = self.get_filenames(self.path)
         filenames_counter = 0
         for filename in self.get_filenames():
             with open(filename, 'r', encoding='utf-8') as attempt_handler:
@@ -65,9 +65,6 @@ class PythonParser(AllLanguagesParser):
     def generate_nodes_out_of_trees(self):
         """Return all nodes of code.
 
-        Keyword arguments:
-        trees -- Trees of some computer language code.
-
         Returns a generator.
         """
         for tree in self.get_trees():
@@ -76,9 +73,6 @@ class PythonParser(AllLanguagesParser):
 
     def select_function_names_from_nodes(self):
         """Extracts from nodes all the function names in lowercase.
-
-        Keyword arguments:
-        nodes -- Nodes of some computer language code.
 
         Returns a generator.
         """
@@ -91,9 +85,6 @@ class PythonParser(AllLanguagesParser):
     def select_variable_names_from_nodes(self):
         """Extracts from nodes all the variables names in lowercase.
 
-        Keyword arguments:
-        nodes -- Nodes of some computer language code.
-
         Returns a generator.
         """
         for node in self.generate_nodes_out_of_trees():
@@ -101,10 +92,17 @@ class PythonParser(AllLanguagesParser):
                 yield node.id.lower()
 
 
+def choose_language(language):
+    """A function that helps to choose the desired programming language class
+    to parse.
+
+    Returns a class.
+    """
+    return language_classes_dictionary.get(language)
+
+
 language_classes_dictionary = {
     'python': PythonParser
 }
 
 
-def choose_language(language):
-    return language_classes_dictionary.get(language)

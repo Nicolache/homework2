@@ -7,11 +7,6 @@ if not nltk.data.find('taggers/averaged_perceptron_tagger'):
     nltk.download('averaged_perceptron_tagger')
 
 
-#def lower_case_split(name):
-#	lower_name = name.lower()
-#	return lower_name.split('_')
-
-
 def get_top(words):
     return collections.Counter(words).most_common()
 
