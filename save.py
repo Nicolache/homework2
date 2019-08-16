@@ -2,10 +2,17 @@ import collections
 import csv
 import json
 def save_to_pdf():
+    """An empty function, as an example of future formats.
+    """
     pass
 
 
 def save_to_csv(data, write_file):
+    """Saves data to csv format to a file with a certain filename.
+
+    Keyword arguments:
+    data -- input data
+    """
     list_for_csv = []
     for word, occurence in collections.Counter(data).most_common():
         list_for_csv.append([word[0], word[1], occurence])
