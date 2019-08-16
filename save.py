@@ -1,6 +1,8 @@
 import collections
 import csv
 import json
+
+
 def save_to_pdf():
     """An empty function, as an example of future formats.
     """
@@ -36,6 +38,7 @@ def to_stdout(data, write_file):
 
 def get_output_format(format):
     return output_formats.get(format)
+
 
 output_formats = {
     'stdout': to_stdout,

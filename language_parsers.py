@@ -103,5 +103,3 @@ def choose_language(language):
 language_classes_dictionary = {
     'python': PythonParser
 }
-
-
