@@ -146,7 +146,7 @@ def nouns_in_variables(applied_language_parser):
     return get_top(nouns)
 
 
-reports_dictionary = {
+_reports_dictionary = {
     'nouns_in_functions': nouns_in_functions,
     'verbs_in_functions': verbs_in_functions,
     'nouns_in_variables': nouns_in_variables,
@@ -155,4 +155,4 @@ reports_dictionary = {
 
 
 def choose_report_kind(report_kind):
-    return reports_dictionary.get(report_kind)
+    return _reports_dictionary.get(report_kind)

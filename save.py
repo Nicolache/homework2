@@ -37,10 +37,10 @@ def to_stdout(data, write_file):
 
 
 def get_output_format(format):
-    return output_formats.get(format)
+    return _output_formats.get(format)
 
 
-output_formats = {
+_output_formats = {
     'stdout': to_stdout,
     'json': save_to_json,
     'csv': save_to_csv,

@@ -97,9 +97,9 @@ def choose_language(language):
 
     Returns a class.
     """
-    return language_classes_dictionary.get(language)
+    return _language_classes_dictionary.get(language)
 
 
-language_classes_dictionary = {
+_language_classes_dictionary = {
     'python': PythonParser
 }
