@@ -2,7 +2,7 @@
 This is a homework to check.
 This is executable in Python3 .
 Tested in Python 3.5.2, 3.6.8, 3.6.9 .
-This script makes some function names, or variable names statistics in given projects. It uses "ast" module to walk the code tree, and "nltk" module to distinguish between parts of speech. The essential variables (such as repos_local_path) is located in file variables.py . You can add, or clone with this script some projects to the location in variable repos_local_path, and launch it the way below:
+This script makes some function names, or variable names statistics in given projects. It uses "ast" module to walk the code tree, and "nltk" module to distinguish between parts of speech. The essential variables (such as repos_local_path) is located in file variables.py . You can clone some projects with this script to the location pointed in a variable repos_local_path, and launch it the way below:
 ## Usage. ##
     start.py [-h] [--clear] [-c]
              [-r {nouns_in_functions,verbs_in_functions,nouns_in_variables,verbs_in_variables}]
@@ -14,7 +14,8 @@ This script makes some function names, or variable names statistics in given pro
                             It removes all the directories inside repos_local_path
                             on start.
       -c, --clone           It clones all from repos_to_clone_urls variable.
-      -r {nouns_in_functions,verbs_in_functions,nouns_in_variables,verbs_in_variables}, --report {nouns_in_functions,verbs_in_functions,nouns_in_variables,verbs_in_variables}
+      -r {nouns_in_functions,verbs_in_functions,nouns_in_variables,verbs_in_variables},  
+         --report {nouns_in_functions,verbs_in_functions,nouns_in_variables,verbs_in_variables}
                             A kind of statistics. Default is verbs_in_functions.
       -l {python,ruby}, --language {python,ruby}
                             Parsing language choice.
