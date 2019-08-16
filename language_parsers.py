@@ -1,7 +1,6 @@
 import ast
 import os
-# from variables import logging, MAXFILENAMES
-from variables import MAXFILENAMES
+from variables import logging, MAXFILENAMES
 
 
 class AllLanguagesParser(object):
@@ -51,7 +50,7 @@ class PythonParser(AllLanguagesParser):
                 tree = ast.parse(main_file_content)
                 filenames_counter += 1
             except SyntaxError as e:
-                # logging.warning(e)
+                logging.warning(e)
                 tree = None
             if not with_filenames:
                 yield tree
@@ -59,8 +58,8 @@ class PythonParser(AllLanguagesParser):
                 yield (filename, tree)
             if with_filenames and with_file_content:
                 yield (filename, main_file_content, tree)
-        # logging.info('Total {} files'.format(filenames_counter))
-        # logging.info('trees generated')
+        logging.debug('Total {} files'.format(filenames_counter))
+        logging.debug('trees generated')
 
     def generate_nodes_out_of_trees(self):
         """Return all nodes of code.

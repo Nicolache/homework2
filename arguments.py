@@ -14,7 +14,7 @@ parser.add_argument(
     '-c',
     '--clone',
     action='store_true',
-    help='It clones all from repos_to_clone_urls.',
+    help='It clones all from repos_to_clone_urls variable.',
 )
 parser.add_argument(
     '-r',
@@ -26,7 +26,7 @@ parser.add_argument(
         'verbs_in_variables'
     ],
     default='verbs_in_functions',
-    help="A kind of statistics",
+    help="A kind of statistics. Default is verbs_in_functions.",
 )
 parser.add_argument(
     '-l',

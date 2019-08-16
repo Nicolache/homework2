@@ -3,6 +3,7 @@
 !arguments.py
 !language_parsers.py
 !report_kinds.py
+!requirements.txt
 !save.py
 !start.py
 !variables.py
