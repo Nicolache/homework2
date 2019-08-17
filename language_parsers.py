@@ -1,5 +1,6 @@
 import ast
 import os
+from typing import Generator, Any
 from variables import logging, MAXFILENAMES
 
 
@@ -8,7 +9,7 @@ class AllLanguagesParser(object):
     def __init__(self, path):
         self.path = path
 
-    def get_filenames(self):
+    def get_filenames(self) -> Generator[str, None, None]:
         """Get all *.py files locations inside `self.path` location.
         This is a common method for all the programming language parsers.
 
@@ -27,7 +28,11 @@ class PythonParser(AllLanguagesParser):
     def __init__(self, path):
         super().__init__(path)
 
-    def get_trees(self, with_filenames=False, with_file_content=False):
+    def get_trees(
+        self,
+        with_filenames: bool=False,
+        with_file_content: bool=False
+    ) -> Generator[Any, None, None]:
         """Generates ast objects, or ast objects in tuple
         with filenames, and file contents.
 
@@ -61,8 +66,18 @@ class PythonParser(AllLanguagesParser):
         logging.debug('Total {} files'.format(filenames_counter))
         logging.debug('trees generated')
 
-    def generate_nodes_out_of_trees(self):
-        """Return all nodes of code.
+    def generate_nodes_out_of_trees(self) -> Generator[Any, None, None]:
+        """Returns all nodes of code, as ast tree objects like:
+        <_ast.Index object at 0x7f1fbc30>
+        <_ast.Attribute object at 0x7f1fa1d0>
+        <_ast.Subscript object at 0x7f1f0870>
+        <_ast.Call object at 0x7f1f8a70>
+        <_ast.Num object at 0x7f1f8bb0>
+        <_ast.BinOp object at 0x7f1f8d50>
+        <_ast.Add object at 0x7f98eb50>
+        <_ast.Str object at 0x7f1f8fd0>
+        <_ast.Load object at 0x7f98e2d0>,
+        but i do not know how to annotate it more precisely.
 
         Returns a generator.
         """
@@ -70,7 +85,7 @@ class PythonParser(AllLanguagesParser):
             for node in ast.walk(tree):
                 yield node
 
-    def select_function_names_from_nodes(self):
+    def select_function_names_from_nodes(self) -> Generator[str, None, None]:
         """Extracts from nodes all the function names in lowercase.
 
         Returns a generator.
@@ -81,7 +96,7 @@ class PythonParser(AllLanguagesParser):
                 node.name.lower().endswith('__')):
                     yield node.name.lower()
 
-    def select_variable_names_from_nodes(self):
+    def select_variable_names_from_nodes(self) -> Generator[str, None, None]:
         """Extracts from nodes all the variables names in lowercase.
 
         Returns a generator.

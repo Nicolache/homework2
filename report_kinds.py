@@ -1,6 +1,7 @@
 import collections
 import nltk
 from nltk import pos_tag
+from typing import Generator
 
 
 if not nltk.data.find('taggers/averaged_perceptron_tagger'):
@@ -48,7 +49,7 @@ def is_verb(word):
     return pos_info[0][1] in ('VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ')
 
 
-def select_verbs_from_name(name):
+def select_verbs_from_name(name: str) -> Generator[str, None, None]:
     """Forms a generator of verbs that are selected from a name.
 
     Keyword arguments:
@@ -63,7 +64,7 @@ def select_verbs_from_name(name):
             yield word
 
 
-def select_nouns_from_name(name):
+def select_nouns_from_name(name: str) -> Generator[str, None, None]:
     """Forms a generator of nouns that are selected from a name.
 
     Keyword arguments:
