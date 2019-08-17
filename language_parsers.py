@@ -30,8 +30,8 @@ class PythonParser(AllLanguagesParser):
 
     def get_trees(
         self,
-        with_filenames: bool=False,
-        with_file_content: bool=False
+        with_filenames: bool = False,
+        with_file_content: bool = False
     ) -> Generator[Any, None, None]:
         """Generates ast objects, or ast objects in tuple
         with filenames, and file contents.
@@ -94,7 +94,7 @@ class PythonParser(AllLanguagesParser):
             if isinstance(node, ast.FunctionDef) and\
                 not (node.name.lower().startswith('__') and
                 node.name.lower().endswith('__')):
-                    yield node.name.lower()
+                yield node.name.lower()
 
     def select_variable_names_from_nodes(self) -> Generator[str, None, None]:
         """Extracts from nodes all the variables names in lowercase.
